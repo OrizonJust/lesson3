@@ -1,16 +1,20 @@
 package edu.laverno.logging;
 
-import org.aspectj.lang.JoinPoint;
+import edu.laverno.domain.Person;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class LoggingAspect {
 
-    @Before("(execution(* edu.laverno.dao.PersonDAOSimple.*(..)))")
-    public void logBefore(JoinPoint joinpoint) {
-        System.out.println("Вызов метода: " + joinpoint.getSignature().getName());
+    @Around("(execution(* edu.laverno.dao.PersonDAOSimple.*(..)))")
+    public Person logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("Вызов метода: " + joinPoint.getSignature().getName());
+        Person p = (Person) joinPoint.proceed();
+        System.out.println("Метод: " + joinPoint.getSignature().getName());
+        return p;
     }
 }

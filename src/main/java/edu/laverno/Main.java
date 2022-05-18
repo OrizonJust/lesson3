@@ -2,7 +2,6 @@ package edu.laverno;
 
 import edu.laverno.domain.Person;
 import edu.laverno.service.PersonService;
-import edu.laverno.service.PersonServiceImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
